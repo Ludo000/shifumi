@@ -20,7 +20,7 @@ public class ActiviteInitClientWifiP2P extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_activite_init_client_wifi_p2_p2);
+        setContentView(R.layout.activity_activite_init_client_wifi_p2_p);
 
         this.manager=(WifiP2pManager)this.getSystemService(Context.WIFI_P2P_SERVICE);
         this.channel = this.manager.initialize(this,this.getMainLooper(), null);

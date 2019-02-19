@@ -1,10 +1,12 @@
 package com.example.moi.shifumi;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.moi.shifumi.Ecouteur.EcouteurBoutonCreePartie;
 import com.example.moi.shifumi.Ecouteur.EcouteurBoutonRejoindre;
@@ -20,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     EcouteurBoutonCreePartie ecouteurBoutonCreePartie;
     EcouteurBoutonRejoindre ecouteurBoutonRejoindre;
 
+    EditText edtNamePlayer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +32,14 @@ public class MainActivity extends AppCompatActivity {
 
         btnCreePartie = findViewById(R.id.btnCreePartie);
         btnRejoindre = findViewById(R.id.btnRejoindre);
+        edtNamePlayer = findViewById(R.id.edtNamePlayer);
 
-        this.ecouteurBoutonCreePartie = new EcouteurBoutonCreePartie(this);
+
+
+        this.ecouteurBoutonCreePartie = new EcouteurBoutonCreePartie(this,edtNamePlayer);
         btnCreePartie.setOnClickListener(this.ecouteurBoutonCreePartie);
 
-        this.ecouteurBoutonRejoindre = new EcouteurBoutonRejoindre(this);
+        this.ecouteurBoutonRejoindre = new EcouteurBoutonRejoindre(this, edtNamePlayer);
         btnRejoindre.setOnClickListener(this.ecouteurBoutonRejoindre);
 
     }

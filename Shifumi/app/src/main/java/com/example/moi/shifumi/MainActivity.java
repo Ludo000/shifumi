@@ -1,5 +1,7 @@
 package com.example.moi.shifumi;
 
+import android.content.Context;
+import android.net.wifi.p2p.WifiP2pManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -7,7 +9,10 @@ import android.widget.Button;
 import com.example.moi.shifumi.Ecouteur.EcouteurBoutonCreePartie;
 import com.example.moi.shifumi.Ecouteur.EcouteurBoutonRejoindre;
 
+import com.example.moi.shifumi.Network.EcouteurConnectionChanged;
+
 public class MainActivity extends AppCompatActivity {
+
 
     Button btnCreePartie;
     Button btnRejoindre;

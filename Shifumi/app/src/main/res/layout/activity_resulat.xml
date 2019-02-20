@@ -43,7 +43,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/appCompatImageView"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
-        app:layout_constraintVertical_bias="0.024"
+        app:layout_constraintVertical_bias="0.59"
         tools:layout_editor_absoluteX="44dp" />
 
     <Button
@@ -60,7 +60,7 @@
         app:layout_constraintBottom_toTopOf="@+id/appCompatImageView"
         app:layout_constraintStart_toEndOf="@+id/btnRePlay"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.59" />
 
     <TextView
         android:id="@+id/txtWinner"
@@ -74,7 +74,47 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/btnAnnuler"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintVertical_bias="0.02" />
+
+    <TextView
+        android:id="@+id/PlayerServ"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jouer 1 "
+        android:textColor="@color/blanc"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="70dp"
+        tools:layout_editor_absoluteY="151dp" />
+
+    <TextView
+        android:id="@+id/playerClient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jouer 2"
+        android:textColor="@color/blanc"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="268dp"
+        tools:layout_editor_absoluteY="151dp" />
+
+    <ImageView
+        android:id="@+id/imageViewServ"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_launcher_background"
+        tools:layout_editor_absoluteX="39dp"
+        tools:layout_editor_absoluteY="197dp" />
+
+    <ImageView
+        android:id="@+id/imageViewClient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_launcher_background"
+        tools:layout_editor_absoluteX="238dp"
+        tools:layout_editor_absoluteY="197dp" />
 
 </android.support.constraint.ConstraintLayout>

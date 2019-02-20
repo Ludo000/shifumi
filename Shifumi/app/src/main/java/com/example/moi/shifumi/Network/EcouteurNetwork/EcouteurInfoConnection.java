@@ -1,14 +1,19 @@
-package com.example.moi.shifumi.Network;
+package com.example.moi.shifumi.Network.EcouteurNetwork;
 
 import android.net.wifi.p2p.WifiP2pInfo;
 import android.net.wifi.p2p.WifiP2pManager;
+import android.support.v7.app.AppCompatActivity;
+
+import com.example.moi.shifumi.Network.ActiviteInitServeurWifiP2P;
 
 import java.net.InetAddress;
 
 public class EcouteurInfoConnection implements WifiP2pManager.ConnectionInfoListener{
 
-    private ActiviteInitServeurWifiP2P activiteInitServeurWifiP2P;
-    public EcouteurInfoConnection(ActiviteInitServeurWifiP2P activiteInitServeurWifiP2P)
+
+    private AppCompatActivity activiteInitServeurWifiP2P;
+
+    public EcouteurInfoConnection(AppCompatActivity activiteInitServeurWifiP2P)
     {
         this.activiteInitServeurWifiP2P =  activiteInitServeurWifiP2P;
     }
@@ -16,8 +21,7 @@ public class EcouteurInfoConnection implements WifiP2pManager.ConnectionInfoList
     @Override
     public void onConnectionInfoAvailable(WifiP2pInfo info)
     {
-        InetAddress adresseServeur = info.groupOwnerAddress;    // on extrait enfin l'adresse IP
-
+        ((ActiviteInitServeurWifiP2P) this.activiteInitServeurWifiP2P).adresseServeur = info.groupOwnerAddress;      // l'adresse IP du serveur (= Group Owner)est enfin connue
 // ici : communiquer l'adresse à l'utilisateur ou lancer une activité
 
         if (info.groupFormed && info.isGroupOwner) //  cet appareil va jouer le rôle de serveur

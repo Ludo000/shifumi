@@ -1,15 +1,18 @@
-package com.example.moi.shifumi.Network;
+package com.example.moi.shifumi.Network.EcouteurNetwork;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.NetworkInfo;
 import android.net.wifi.p2p.WifiP2pManager;
+import android.support.v7.app.AppCompatActivity;
+
+import com.example.moi.shifumi.Network.ActiviteInitServeurWifiP2P;
 
 public class EcouteurConnectionChanged extends BroadcastReceiver {
-    ActiviteInitServeurWifiP2P activite;
+    AppCompatActivity activite;
 
-    public EcouteurConnectionChanged(ActiviteInitServeurWifiP2P activite) {
+    public EcouteurConnectionChanged(AppCompatActivity activite) {
         this.activite = activite;
     }
 
@@ -23,7 +26,7 @@ public class EcouteurConnectionChanged extends BroadcastReceiver {
                     (NetworkInfo) intent.getParcelableExtra(WifiP2pManager.EXTRA_NETWORK_INFO);
 
             if (networkInfo.isConnected()) {
-                this.activite.manager.requestConnectionInfo(this.activite.channel, this.activite.ecouteurInfoConnection); // on peut enfin demander l'adresse IP du serveur
+                ((ActiviteInitServeurWifiP2P)activite).manager.requestConnectionInfo(((ActiviteInitServeurWifiP2P)activite).channel, ((ActiviteInitServeurWifiP2P)activite).ecouteurInfoConnection); // on peut enfin demander l'adresse IP du serveur
             }
         }
     }

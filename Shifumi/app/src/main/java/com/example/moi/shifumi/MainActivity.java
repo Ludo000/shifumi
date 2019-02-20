@@ -1,5 +1,6 @@
 package com.example.moi.shifumi;
 
+import android.content.IntentFilter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;

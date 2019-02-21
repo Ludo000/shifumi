@@ -29,12 +29,8 @@ public class EcouteurBroadcastReceiver extends BroadcastReceiver {
             } else {
                 //activity.setIsWifiP2pEnabled(false);
             }
-        } else if (WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION.equals(action)) {
-
-            // The peer list has changed! We should probably do something about
-            // that.
-
-        } else if (WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION.equals(action)) {
+        }
+         else if (WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION.equals(action)) {
 
             // Connection state changed! We should probably do something about
             // that.
@@ -55,19 +51,24 @@ public class EcouteurBroadcastReceiver extends BroadcastReceiver {
             }
 
 
-        } else if (WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION.equals(action)) {
-
+        }
+        else if (WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION.equals(action))
+        {
+            //
 
         }
         else if (WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION.equals(action)) {
+            Log.d("sami :", "P2P peers changed");
 
             // Request available peers from the wifi p2p manager. This is an
             // asynchronous call and the calling activity is notified with a
             // callback on PeerListListener.onPeersAvailable()
             if (this.activity.mManager != null) {
                 this.activity.mManager.requestPeers(this.activity.mChannel, this.activity.peerListListener);
+                Log.d("sami :", "requestPeers");
+
             }
-            Log.d("WiFiDirectActivity", "P2P peers changed");
+
         }
 
 

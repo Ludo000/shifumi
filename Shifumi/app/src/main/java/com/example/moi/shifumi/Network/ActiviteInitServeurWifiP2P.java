@@ -25,6 +25,7 @@ import com.example.moi.shifumi.R;
 
 import java.net.InetAddress;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class ActiviteInitServeurWifiP2P extends AppCompatActivity {
@@ -43,8 +44,8 @@ public class ActiviteInitServeurWifiP2P extends AppCompatActivity {
     public EcouteurBoutonRejoindrePlayer ecouteurBoutonRejoindrePlayer;
     private final IntentFilter intentFilter = new IntentFilter();
     public List<WifiP2pDevice> peers = new ArrayList<WifiP2pDevice>();
-    public ArrayAdapter<String> adapterListeWifi;
-    public String[] listeNomWifi;
+    public DeviceListArrayAdapter adapterListeWifi;
+    public Collection<WifiP2pDevice> deviceList;
     public PeerListListener peerListListener;
     public EcouteurConnectionInfo ecouteurConnectionInfo;
     public List<WifiP2pDevice> listeAppareilsAProximite;
@@ -58,7 +59,6 @@ public class ActiviteInitServeurWifiP2P extends AppCompatActivity {
         TextView servPlayerName;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activite_init_serveur_wifi_p2_p);
-        this.listeNomWifi = new String[100];
         btnPlay = findViewById(R.id.btnPlay);
         this.ecouteurBoutonPlay = new EcouteurBoutonPlay(this);
         btnPlay.setOnClickListener(this.ecouteurBoutonPlay);
@@ -139,7 +139,7 @@ public class ActiviteInitServeurWifiP2P extends AppCompatActivity {
         config.wps.setup = WpsInfo.PBC;
 
         this.mManager.connect(this.mChannel,
-                config, new ConnectActionListener());
+                config, new ConnectActionListener(this.mManager, this.mChannel));
 
     }
 }

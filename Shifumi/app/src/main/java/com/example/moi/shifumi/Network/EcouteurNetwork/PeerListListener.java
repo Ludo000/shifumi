@@ -40,13 +40,13 @@ public class PeerListListener implements WifiP2pManager.PeerListListener{
         if (!refreshedPeers.equals(this.activiteInitServeurWifiP2P.peers)) {
             this.activiteInitServeurWifiP2P.peers.clear();
             this.activiteInitServeurWifiP2P.peers.addAll(refreshedPeers);
-            this.activiteInitServeurWifiP2P.listeNomWifi = filtreNoms(refreshedPeers);
+            this.activiteInitServeurWifiP2P.deviceList = refreshedPeers;
             // If an AdapterView is backed by this data, notify it
             // of the change. For instance, if you have a ListView of
             // available peers, trigger an update.
             this.activiteInitServeurWifiP2P.enAttente.setVisibility(View.INVISIBLE);
-            this.activiteInitServeurWifiP2P.adapterListeWifi = new ArrayAdapter<>(this.activiteInitServeurWifiP2P,
-                    R.layout.item_liste_serveur, this.activiteInitServeurWifiP2P.listeNomWifi);
+            this.activiteInitServeurWifiP2P.adapterListeWifi = new DeviceListArrayAdapter(this.activiteInitServeurWifiP2P,
+                    R.layout.item_liste_serveur, this.activiteInitServeurWifiP2P);
             this.activiteInitServeurWifiP2P.mListView.setAdapter(this.activiteInitServeurWifiP2P.adapterListeWifi);
             this.activiteInitServeurWifiP2P.adapterListeWifi.notifyDataSetChanged();
 
@@ -58,7 +58,6 @@ public class PeerListListener implements WifiP2pManager.PeerListListener{
             Log.d("WiFiDirectActivity", "No devices found");
             return;
         }
-         this.activiteInitServeurWifiP2P.connect(0);
 
 
     }

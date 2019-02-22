@@ -63,15 +63,18 @@ public class EcouteurBroadcastReceiver extends BroadcastReceiver {
             // Request available peers from the wifi p2p manager. This is an
             // asynchronous call and the calling activity is notified with a
             // callback on PeerListListener.onPeersAvailable()
-            if (this.activity.mManager != null) {
-                this.activity.mManager.requestPeers(this.activity.mChannel, this.activity.peerListListener);
-                Log.d("sami :", "requestPeers");
-
-            }
+            this.reqPeer();
 
         }
 
 
+    }
+    public void reqPeer(){
+        if (this.activity.mManager != null) {
+            this.activity.mManager.requestPeers(this.activity.mChannel, this.activity.peerListListener);
+            Log.d("sami :", "requestPeers");
+
+        }
     }
 
 }

@@ -4,6 +4,11 @@ import android.net.wifi.p2p.WifiP2pDevice;
 import android.view.View;
 
 import com.example.moi.shifumi.Network.ActiviteInitServeurWifiP2P;
+import com.example.moi.shifumi.Network.DeviceListArrayAdapter;
+import com.example.moi.shifumi.R;
+
+import java.util.Collection;
+import java.util.Iterator;
 
 public class EcouteurItemListServer implements View.OnClickListener {
     private int index;

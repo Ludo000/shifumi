@@ -1,5 +1,6 @@
 package com.example.moi.shifumi.Network.EcouteurNetwork;
 
+import android.content.BroadcastReceiver;
 import android.net.wifi.WpsInfo;
 import android.net.wifi.p2p.WifiP2pConfig;
 import android.net.wifi.p2p.WifiP2pDevice;
@@ -16,9 +17,11 @@ import java.util.Collection;
 
 public class PeerListListener implements WifiP2pManager.PeerListListener{
     ActiviteInitServeurWifiP2P activiteInitServeurWifiP2P;
+    EcouteurBroadcastReceiver broadcastReceiver;
 
-    public PeerListListener(ActiviteInitServeurWifiP2P activiteInitServeurWifiP2P) {
+    public PeerListListener(ActiviteInitServeurWifiP2P activiteInitServeurWifiP2P, EcouteurBroadcastReceiver broadcastReceiver) {
         this.activiteInitServeurWifiP2P = activiteInitServeurWifiP2P;
+        this.broadcastReceiver = broadcastReceiver;
     }
     private static String[] filtreNoms(Collection<WifiP2pDevice> listeAppareilsAProximite)
     {
@@ -56,6 +59,7 @@ public class PeerListListener implements WifiP2pManager.PeerListListener{
 
         if (this.activiteInitServeurWifiP2P.peers.size() == 0) {
             Log.d("WiFiDirectActivity", "No devices found");
+            this.broadcastReceiver.reqPeer();
             return;
         }
 

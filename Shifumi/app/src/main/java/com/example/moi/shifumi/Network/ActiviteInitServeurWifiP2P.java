@@ -51,8 +51,9 @@ public class ActiviteInitServeurWifiP2P extends AppCompatActivity {
     public List<WifiP2pDevice> listeAppareilsAProximite;
     public String[] nomsAppareilsAProximite;
     public TextView enAttente;
-
-
+    public EcouteurBroadcastReceiver receiver;
+    public TextView selectedDevice;
+    public String playerName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +65,8 @@ public class ActiviteInitServeurWifiP2P extends AppCompatActivity {
         btnPlay.setOnClickListener(this.ecouteurBoutonPlay);
         this.mListView = findViewById(R.id.listview_server);
         this.enAttente = findViewById(R.id.enAttentPlayer);
-        String playerName = getIntent().getStringExtra("NamePlayer");
+        this.selectedDevice = findViewById(R.id.selectedDevice);
+        playerName = getIntent().getStringExtra("NamePlayer");
         servPlayerName = findViewById(R.id.servPlayerName);
         servPlayerName.setText(playerName);
 
@@ -80,8 +82,8 @@ public class ActiviteInitServeurWifiP2P extends AppCompatActivity {
 
 
         String[] listplayer = {playerName};
-
-        this.peerListListener = new PeerListListener(this);
+        receiver = new EcouteurBroadcastReceiver(this);
+        this.peerListListener = new PeerListListener(this, this.receiver);
         this.ecouteurConnectionInfo = new EcouteurConnectionInfo(this);
 
 
@@ -94,7 +96,6 @@ public class ActiviteInitServeurWifiP2P extends AppCompatActivity {
     protected void onResume()
     {
         super.onResume();
-        EcouteurBroadcastReceiver receiver = new EcouteurBroadcastReceiver(this);
         registerReceiver(receiver, intentFilter);
         mManager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
         mChannel = mManager.initialize(this, getMainLooper(), null);
@@ -139,7 +140,7 @@ public class ActiviteInitServeurWifiP2P extends AppCompatActivity {
         config.wps.setup = WpsInfo.PBC;
 
         this.mManager.connect(this.mChannel,
-                config, new ConnectActionListener(this.mManager, this.mChannel));
+                config, new ConnectActionListener(this, id));
 
     }
 }

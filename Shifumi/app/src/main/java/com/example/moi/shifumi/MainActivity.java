@@ -14,12 +14,14 @@ import android.widget.EditText;
 
 import com.example.moi.shifumi.Ecouteur.EcouteurBoutonCreePartie;
 import com.example.moi.shifumi.Ecouteur.EcouteurBoutonRejoindre;
+import com.example.moi.shifumi.Network.ActiviteInitServeurWifiP2P;
 
 public class MainActivity extends AppCompatActivity {
 
 
     Button btnCreePartie;
     Button btnRejoindre;
+    ActiviteInitServeurWifiP2P activiteInitServeurWifiP2P;
 
     EcouteurBoutonCreePartie ecouteurBoutonCreePartie;
     EcouteurBoutonRejoindre ecouteurBoutonRejoindre;

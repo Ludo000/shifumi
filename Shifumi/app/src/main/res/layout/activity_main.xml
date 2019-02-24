@@ -24,11 +24,11 @@
 
     <Button
         android:id="@+id/btnCreePartie"
-        android:layout_width="204dp"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="74dp"
         android:layout_marginTop="36dp"
         android:text="Crée partie"
-        android:textSize="24sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,17 +54,20 @@
         android:text="Entrer votre nom : "
         android:textColor="@color/blanc"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/edtNamePlayer"
-        android:layout_width="wrap_content"
+        android:layout_width="296dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:ems="10"
         android:inputType="textPersonName"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/connectServerStatus" />

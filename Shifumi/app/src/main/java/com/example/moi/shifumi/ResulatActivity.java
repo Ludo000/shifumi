@@ -20,11 +20,6 @@ public class ResulatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resulat);
 
-        this.ecouteurBoutonRejouer = new EcouteurBoutonRejouer(this);
-        this.ecouteurBoutonQuitterJeu= new EcouteurBoutonQuitterJeu(this);
-
-        btnRejouer.setOnClickListener(this.ecouteurBoutonRejouer);
-        btnQuitter.setOnClickListener(this.ecouteurBoutonQuitterJeu);
 
 
 

@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -21,6 +22,8 @@ import com.example.moi.shifumi.Network.EcouteurNetwork.ConnectActionListener;
 import com.example.moi.shifumi.Network.EcouteurNetwork.EcouteurBroadcastReceiver;
 import com.example.moi.shifumi.Network.EcouteurNetwork.EcouteurConnectionInfo;
 import com.example.moi.shifumi.Network.EcouteurNetwork.PeerListListener;
+import com.example.moi.shifumi.Network.Fragments.GameFragment;
+import com.example.moi.shifumi.Network.Fragments.StartFragment;
 import com.example.moi.shifumi.R;
 
 import java.net.InetAddress;
@@ -54,22 +57,25 @@ public class ActiviteInitServeurWifiP2P extends AppCompatActivity {
     public EcouteurBroadcastReceiver receiver;
     public TextView selectedDevice;
     public String playerName;
+    public  TextView servPlayerName;
+
+    public ImageView imageViewRock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        TextView servPlayerName;
+
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_activite_init_serveur_wifi_p2_p);
         btnPlay = findViewById(R.id.btnPlay);
         this.ecouteurBoutonPlay = new EcouteurBoutonPlay(this);
-        btnPlay.setOnClickListener(this.ecouteurBoutonPlay);
+        //  btnPlay.setOnClickListener(this.ecouteurBoutonPlay);
         this.mListView = findViewById(R.id.listview_server);
         this.enAttente = findViewById(R.id.enAttentPlayer);
         this.selectedDevice = findViewById(R.id.selectedDevice);
         playerName = getIntent().getStringExtra("NamePlayer");
         servPlayerName = findViewById(R.id.servPlayerName);
-        servPlayerName.setText(playerName);
-
+        //    servPlayerName.setText(playerName);
 
         // Indicates a change in the Wi-Fi P2P status.
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
@@ -80,15 +86,13 @@ public class ActiviteInitServeurWifiP2P extends AppCompatActivity {
         // Indicates this device's details have changed.String[] listplayer = {playerName};
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
 
-
         String[] listplayer = {playerName};
         receiver = new EcouteurBroadcastReceiver(this);
         this.peerListListener = new PeerListListener(this, this.receiver);
         this.ecouteurConnectionInfo = new EcouteurConnectionInfo(this);
 
-
-
-
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                new StartFragment(this)).commit();
 
     }
 

@@ -1,22 +1,27 @@
 package com.example.moi.shifumi.Ecouteur;
 
-import android.content.Intent;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
+import android.widget.Toast;
 
-import com.example.moi.shifumi.GameActivity;
 import com.example.moi.shifumi.Network.ActiviteInitServeurWifiP2P;
+import com.example.moi.shifumi.Network.Fragments.GameFragment;
+import com.example.moi.shifumi.R;
 
 public class EcouteurBoutonPlay implements View.OnClickListener {
 
     ActiviteInitServeurWifiP2P activiteInitServeurWifiP2P;
+
     public EcouteurBoutonPlay(ActiviteInitServeurWifiP2P activiteInitServeurWifiP2P) {
-    this.activiteInitServeurWifiP2P = activiteInitServeurWifiP2P;
+        this.activiteInitServeurWifiP2P = activiteInitServeurWifiP2P;
     }
 
     @Override
     public void onClick(View view) {
-        Intent intent = new Intent(this.activiteInitServeurWifiP2P, GameActivity.class);
-        intent.putExtra("NamePlayer", this.activiteInitServeurWifiP2P.playerName);
-        this.activiteInitServeurWifiP2P.startActivity(intent);
+
+        this.activiteInitServeurWifiP2P.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                new GameFragment(this.activiteInitServeurWifiP2P)).commit();
+
     }
 }

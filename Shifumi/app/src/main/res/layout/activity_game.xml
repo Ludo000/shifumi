@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-   android:background="@drawable/home"
+    android:background="@drawable/home"
     tools:context=".GameActivity">
-
 
     <TextView
         android:id="@+id/TextView10"
@@ -15,57 +14,68 @@
         android:layout_marginLeft="36dp"
         android:layout_marginStart="36dp"
         android:layout_marginTop="36dp"
+        android:text="Temps d'attente :"
         android:textColor="@color/blanc"
         android:textSize="24sp"
-        android:text="Temps d'attente :"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/appCompatImageView"
-        android:layout_width="151dp"
-        android:layout_height="69dp"
+        android:layout_width="129dp"
+        android:layout_height="106dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
         android:background="@drawable/logo"
         android:scaleType="fitEnd"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnScissors"
-        app:layout_constraintVertical_bias="0.272" />
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/btnRock"
-        android:layout_width="129dp"
-        android:layout_height="106dp"
-        android:layout_marginTop="36dp"
-        android:background="@drawable/rock"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TextView10" />
-
-    <Button
-        android:id="@+id/btnPaper"
-        android:layout_width="129dp"
-        android:layout_height="106dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/paper"
+    <ImageView
+        android:id="@+id/imageViewRock"
+        android:layout_width="151dp"
+        android:layout_height="148dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="52dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnRock" />
+        app:layout_constraintTop_toBottomOf="@+id/TextView10"
+        app:srcCompat="@drawable/rock" />
 
-    <Button
-        android:id="@+id/btnScissors"
-        android:layout_width="129dp"
-        android:layout_height="106dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/scissors"
+    <ImageView
+        android:id="@+id/imageViewPaper"
+        android:layout_width="151dp"
+        android:layout_height="148dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="44dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnPaper" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewRock"
+        app:srcCompat="@drawable/paper" />
+
+    <ImageView
+        android:id="@+id/imageViewScissors"
+        android:layout_width="151dp"
+        android:layout_height="148dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewPaper"
+        app:srcCompat="@drawable/scissors" />
 
 </android.support.constraint.ConstraintLayout>

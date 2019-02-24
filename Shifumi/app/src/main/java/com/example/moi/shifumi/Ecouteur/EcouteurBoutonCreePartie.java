@@ -6,6 +6,9 @@ import android.widget.EditText;
 
 import com.example.moi.shifumi.MainActivity;
 import com.example.moi.shifumi.Network.ActiviteInitServeurWifiP2P;
+import com.example.moi.shifumi.Network.Fragments.GameFragment;
+import com.example.moi.shifumi.Network.Fragments.StartFragment;
+import com.example.moi.shifumi.R;
 
 
 public class EcouteurBoutonCreePartie implements View.OnClickListener{
@@ -14,18 +17,14 @@ public class EcouteurBoutonCreePartie implements View.OnClickListener{
     EditText playerName;
 
     public EcouteurBoutonCreePartie(MainActivity mainActivity, EditText playerName) {
-
         this.mainActivity = mainActivity;
         this.playerName = playerName;
     }
 
     @Override
     public void onClick(View view) {
-
         Intent intent = new Intent(this.mainActivity, ActiviteInitServeurWifiP2P.class);
         intent.putExtra("NamePlayer",this.playerName.getText().toString());
         this.mainActivity.startActivity(intent);
-
-
     }
 }

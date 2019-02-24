@@ -13,6 +13,7 @@ public class GameActivity extends AppCompatActivity {
     Button btnPaper;
     Button btnRock;
     Button btnScissors;
+    Button btnRejouer;
 
     EcouteurBoutonRock ecouteurBoutonRock;
     EcouteurBoutonPaper ecouteurBoutonPaper;
@@ -22,13 +23,6 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        this.ecouteurBoutonPaper= new EcouteurBoutonPaper(this);
-        this.ecouteurBoutonRock = new EcouteurBoutonRock(this);
-        this.ecouteurBoutonScissors= new EcouteurBoutonScissors(this);
-
-        btnPaper.setOnClickListener(this.ecouteurBoutonPaper);
-        btnRock.setOnClickListener(this.ecouteurBoutonRock);
-        btnScissors.setOnClickListener(this.ecouteurBoutonScissors);
 
 
 

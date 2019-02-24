@@ -5,7 +5,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.example.moi.shifumi.GameActivity;
+
 import com.example.moi.shifumi.Network.ActiviteInitServeurWifiP2P;
 import com.example.moi.shifumi.Network.Fragments.GameFragment;
 import com.example.moi.shifumi.Network.Fragments.ResultFragment;
@@ -13,7 +13,7 @@ import com.example.moi.shifumi.R;
 
 public class EcouteurBoutonPaper implements View.OnClickListener {
 
-    GameActivity gameActivity;
+
    // public ImageView imageViewRock;
     ActiviteInitServeurWifiP2P activiteInitServeurWifiP2P;
     GameFragment gameFragment;

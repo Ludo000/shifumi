@@ -17,7 +17,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.moi.shifumi.Ecouteur.EcouteurBoutonPlay;
-import com.example.moi.shifumi.Ecouteur.EcouteurBoutonRejoindrePlayer;
 import com.example.moi.shifumi.Network.EcouteurNetwork.ConnectActionListener;
 import com.example.moi.shifumi.Network.EcouteurNetwork.EcouteurBroadcastReceiver;
 import com.example.moi.shifumi.Network.EcouteurNetwork.EcouteurConnectionInfo;
@@ -44,7 +43,6 @@ public class ActiviteInitServeurWifiP2P extends AppCompatActivity {
     public ListView mListView;
     public ArrayAdapter<String> adapter;
     public Button btnRejoindrePlayer;
-    public EcouteurBoutonRejoindrePlayer ecouteurBoutonRejoindrePlayer;
     private final IntentFilter intentFilter = new IntentFilter();
     public List<WifiP2pDevice> peers = new ArrayList<WifiP2pDevice>();
     public DeviceListArrayAdapter adapterListeWifi;

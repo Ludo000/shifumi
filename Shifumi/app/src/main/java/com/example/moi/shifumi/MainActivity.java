@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.moi.shifumi.Ecouteur.EcouteurBoutonCreePartie;
-import com.example.moi.shifumi.Ecouteur.EcouteurBoutonRejoindre;
 import com.example.moi.shifumi.Network.ActiviteInitServeurWifiP2P;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
     ActiviteInitServeurWifiP2P activiteInitServeurWifiP2P;
 
     EcouteurBoutonCreePartie ecouteurBoutonCreePartie;
-    EcouteurBoutonRejoindre ecouteurBoutonRejoindre;
 
     EditText edtNamePlayer;
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
@@ -35,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         this.checkLocationPermission();
         btnCreePartie = findViewById(R.id.btnCreePartie);
-        btnRejoindre = findViewById(R.id.btnRejoindre);
         edtNamePlayer = findViewById(R.id.edtNamePlayer);
 
 
@@ -43,8 +40,6 @@ public class MainActivity extends AppCompatActivity {
         this.ecouteurBoutonCreePartie = new EcouteurBoutonCreePartie(this,edtNamePlayer);
         btnCreePartie.setOnClickListener(this.ecouteurBoutonCreePartie);
 
-        this.ecouteurBoutonRejoindre = new EcouteurBoutonRejoindre(this, edtNamePlayer);
-        btnRejoindre.setOnClickListener(this.ecouteurBoutonRejoindre);
 
     }
 

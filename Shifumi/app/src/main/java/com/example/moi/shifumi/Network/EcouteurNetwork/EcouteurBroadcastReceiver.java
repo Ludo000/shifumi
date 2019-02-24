@@ -7,7 +7,6 @@ import android.net.NetworkInfo;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.util.Log;
 
-import com.example.moi.shifumi.Network.ActiviteInitClientWifiP2P;
 import com.example.moi.shifumi.Network.ActiviteInitServeurWifiP2P;
 
 public class EcouteurBroadcastReceiver extends BroadcastReceiver {

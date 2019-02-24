@@ -3,7 +3,6 @@ package com.example.moi.shifumi.Network.EcouteurNetwork;
 import android.net.wifi.p2p.WifiP2pInfo;
 import android.net.wifi.p2p.WifiP2pManager;
 
-import com.example.moi.shifumi.Network.ActiviteInitClientWifiP2P;
 import com.example.moi.shifumi.Network.ActiviteInitServeurWifiP2P;
 
 import java.net.InetAddress;

@@ -54,8 +54,8 @@ public class ActiviteInitServeurWifiP2P extends AppCompatActivity {
     public TextView enAttente;
     public EcouteurBroadcastReceiver receiver;
     public TextView selectedDevice;
-    public String playerName;
-    public  TextView servPlayerName;
+    public String playerName, challengerNAme, jeu;
+    public TextView servPlayerName;
 
     public ImageView imageViewRock;
 
@@ -72,6 +72,7 @@ public class ActiviteInitServeurWifiP2P extends AppCompatActivity {
         this.enAttente = findViewById(R.id.enAttentPlayer);
         this.selectedDevice = findViewById(R.id.selectedDevice);
         playerName = getIntent().getStringExtra("NamePlayer");
+        challengerNAme = "Joueur 2";
         servPlayerName = findViewById(R.id.servPlayerName);
         //    servPlayerName.setText(playerName);
 

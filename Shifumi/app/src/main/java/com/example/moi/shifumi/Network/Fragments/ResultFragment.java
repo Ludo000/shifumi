@@ -1,7 +1,6 @@
 package com.example.moi.shifumi.Network.Fragments;
 
 import android.annotation.SuppressLint;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -25,17 +24,18 @@ public class ResultFragment extends Fragment {
     EcouteurBoutonQuitterJeu ecouteurBoutonQuitterJeu;
     Button btnRejouer;
     Button btnQutterJeu;
-    ImageView imgServPlayer;
-    public TextView playServ;
-    Bitmap bitmap;
+    ImageView jeu_host, jeu_guest;
+    TextView winner, joueur_host, joueur_guest;
     ActiviteInitServeurWifiP2P activiteInitServeurWifiP2P;
 
+    String host, guest;
+
     @SuppressLint("ValidFragment")
-    public ResultFragment(ActiviteInitServeurWifiP2P activiteInitServeurWifiP2P, Bitmap bitmap) {
+    public ResultFragment(ActiviteInitServeurWifiP2P activiteInitServeurWifiP2P) {
         this.activiteInitServeurWifiP2P= activiteInitServeurWifiP2P;
-        this.bitmap= bitmap;
     }
 
+    @SuppressLint({"CutPasteId", "SetTextI18n"})
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View viewResult =  inflater.inflate(R.layout.activity_resulat, container, false);
@@ -43,14 +43,77 @@ public class ResultFragment extends Fragment {
         this.ecouteurBoutonQuitterJeu = new EcouteurBoutonQuitterJeu(this.activiteInitServeurWifiP2P);
         btnRejouer = viewResult.findViewById(R.id.btnRePlay);
         btnQutterJeu = viewResult.findViewById(R.id.btnAnnuler);
-        playServ = viewResult.findViewById(R.id.playerServ);
-        imgServPlayer = viewResult.findViewById(R.id.imageViewServ);
+        winner = viewResult.findViewById(R.id.txtWinner);
+        joueur_host = viewResult.findViewById(R.id.playerServ);
+        joueur_guest = viewResult.findViewById(R.id.playerClient);
+        jeu_guest = viewResult.findViewById(R.id.imageViewServ);
+        jeu_host = viewResult.findViewById(R.id.imageViewClient);
+
+        joueur_host.setText(this.activiteInitServeurWifiP2P.playerName);
+        joueur_guest.setText(this.activiteInitServeurWifiP2P.challengerNAme);
+
         btnRejouer.setOnClickListener(this.ecouteurBoutonRejouer);
         btnQutterJeu.setOnClickListener(this.ecouteurBoutonQuitterJeu);
-        playServ.setText(this.activiteInitServeurWifiP2P.playerName);
-       // imgServPlayer.setIm setImageResource(this.activiteInitServeurWifiP2P);
-        imgServPlayer.setImageBitmap(this.bitmap);
 
-return viewResult;
+        Bundle bundle = this.getArguments();
+
+        if(bundle != null){
+            host = bundle.getString("host");
+            guest = bundle.getString("guest");
+
+            if (host.equals(guest)){
+                winner.setText("Match nul !");
+                if (host.equals("f")) {
+                    jeu_host.setImageResource(R.drawable.paper);
+                    jeu_guest.setImageResource(R.drawable.paper);
+                }
+                if (host.equals("c")) {
+                    jeu_host.setImageResource(R.drawable.scissors);
+                    jeu_guest.setImageResource(R.drawable.scissors);
+                }
+                if (host.equals("p")) {
+                    jeu_host.setImageResource(R.drawable.rock);
+                    jeu_guest.setImageResource(R.drawable.rock);
+                }
+            }
+
+            assert guest != null;
+            if ((host.equals("p") && guest.equals("f")) || (host.equals("f") && guest.equals("c")) || (host.equals("c") && guest.equals("p"))) {
+                winner.setText(this.activiteInitServeurWifiP2P.challengerNAme);
+                if (host.equals("p")) {
+                    jeu_host.setImageResource(R.drawable.rock);
+                    jeu_guest.setImageResource(R.drawable.paper);
+                }
+                if (host.equals("f")) {
+                    jeu_host.setImageResource(R.drawable.paper);
+                    jeu_guest.setImageResource(R.drawable.scissors);
+                }
+                if (host.equals("c")) {
+                    jeu_host.setImageResource(R.drawable.scissors);
+                    jeu_guest.setImageResource(R.drawable.rock);
+                }
+            }
+
+            if((host.equals("p") && guest.equals("c")) || (host.equals("f") && guest.equals("p")) || (host.equals("c") && guest.equals("f"))) {
+                winner.setText(this.activiteInitServeurWifiP2P.playerName);
+                if(host.equals("p")) {
+                    jeu_host.setImageResource(R.drawable.rock);
+                    jeu_guest.setImageResource(R.drawable.scissors);
+                }
+                if(host.equals("f")) {
+                    jeu_host.setImageResource(R.drawable.paper);
+                    jeu_guest.setImageResource(R.drawable.rock);
+                }
+                if(host.equals("c")) {
+                    jeu_host.setImageResource(R.drawable.scissors);
+                    jeu_guest.setImageResource(R.drawable.paper);
+                }
+            }
+
+
+        }
+
+
+        return viewResult;
     }
 }

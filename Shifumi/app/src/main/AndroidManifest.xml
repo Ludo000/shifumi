@@ -19,8 +19,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Network.ActiviteInitClientWifiP2P"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".Network.ActiviteInitServeurWifiP2P"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
@@ -34,10 +32,6 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".GameActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".ResulatActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" ></activity>
     </application>
 
 </manifest>

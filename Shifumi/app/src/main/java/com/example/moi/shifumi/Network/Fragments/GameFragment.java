@@ -1,38 +1,37 @@
 package com.example.moi.shifumi.Network.Fragments;
 
 import android.annotation.SuppressLint;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.Chronometer;
+import android.widget.ImageButton;
 
 import com.example.moi.shifumi.Ecouteur.EcouteurBoutonPaper;
-import com.example.moi.shifumi.Ecouteur.EcouteurBoutonRejouer;
 import com.example.moi.shifumi.Ecouteur.EcouteurBoutonRock;
 import com.example.moi.shifumi.Ecouteur.EcouteurBoutonScissors;
 import com.example.moi.shifumi.Network.ActiviteInitServeurWifiP2P;
 import com.example.moi.shifumi.R;
 
 @SuppressLint("ValidFragment")
-public class GameFragment extends Fragment {
+public class GameFragment extends Fragment implements Chronometer.OnChronometerTickListener {
 
     ActiviteInitServeurWifiP2P activiteInitServeurWifiP2P;
     EcouteurBoutonRock ecouteurBoutonRock;
     EcouteurBoutonPaper ecouteurBoutonPaper;
     EcouteurBoutonScissors ecouteurBoutonScissors;
 
-    public Button btnRock;
-    public ImageView imgRock;
-    public ImageView imgPaper;
-    public ImageView imgScissors;
+    public ImageButton imgRock;
+    public ImageButton imgPaper;
+    public ImageButton imgScissors;
+    Chronometer chronometre;
+    int counter = 10;
+    String monJeu;
 
 
     @SuppressLint("ValidFragment")
@@ -40,18 +39,23 @@ public class GameFragment extends Fragment {
         this.activiteInitServeurWifiP2P= activiteInitServeurWifiP2P;
     }
 
+    @SuppressLint("CutPasteId")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
        View viewGame= inflater.inflate(R.layout.activity_game, container, false);
-       imgRock =viewGame.findViewById(R.id.imageViewRock);
-       imgPaper = viewGame.findViewById(R.id.imageViewPaper);
-       imgScissors = viewGame.findViewById(R.id.imageViewScissors);
+       imgRock =viewGame.findViewById(R.id.imageButtonRock);
+       imgPaper = viewGame.findViewById(R.id.imageButtonPaper);
+       imgScissors = viewGame.findViewById(R.id.imageButtonScissors);
 
-      this.ecouteurBoutonRock = new EcouteurBoutonRock(this.activiteInitServeurWifiP2P,this);
-      this.ecouteurBoutonPaper = new EcouteurBoutonPaper(this.activiteInitServeurWifiP2P,this);
-      this.ecouteurBoutonScissors = new EcouteurBoutonScissors(this.activiteInitServeurWifiP2P,this);
+        chronometre = viewGame.findViewById(R.id.chronometre);
+        chronometre.setOnChronometerTickListener(this);
+        chronometre.start();
+
+        this.ecouteurBoutonRock = new EcouteurBoutonRock(this.activiteInitServeurWifiP2P,this);
+        this.ecouteurBoutonPaper = new EcouteurBoutonPaper(this.activiteInitServeurWifiP2P,this);
+        this.ecouteurBoutonScissors = new EcouteurBoutonScissors(this.activiteInitServeurWifiP2P,this);
 
        imgRock.setOnClickListener(this.ecouteurBoutonRock);
        imgPaper.setOnClickListener(this.ecouteurBoutonPaper);
@@ -60,5 +64,31 @@ public class GameFragment extends Fragment {
 
        return viewGame;
 
+    }
+
+    @SuppressLint("SetTextI18n")
+    @Override
+    public void onChronometerTick(Chronometer chronometer) {
+
+        if(counter < 0)
+        {
+            counter = 10;
+        }
+        chronometer.setText(counter + "");
+        counter--;
+
+        if ("0".contentEquals(chronometer.getText())) {
+            ResultFragment resultFragment = new ResultFragment(this.activiteInitServeurWifiP2P);
+            Bundle args = new Bundle();
+            args.putString("guest", "p");
+            args.putString("host", this.activiteInitServeurWifiP2P.jeu);
+            resultFragment.setArguments(args);
+            if (getFragmentManager() != null) {
+                getFragmentManager().
+                        beginTransaction().replace(R.id.fragment_container, resultFragment).commit();
+            }
+
+            Log.d("fini", "STOOPPPPP");
+        }
     }
 }

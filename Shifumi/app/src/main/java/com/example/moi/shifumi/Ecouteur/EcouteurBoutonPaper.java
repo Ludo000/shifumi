@@ -15,8 +15,8 @@ public class EcouteurBoutonPaper implements View.OnClickListener {
 
 
    // public ImageView imageViewRock;
-    ActiviteInitServeurWifiP2P activiteInitServeurWifiP2P;
-    GameFragment gameFragment;
+   private ActiviteInitServeurWifiP2P activiteInitServeurWifiP2P;
+    private GameFragment gameFragment;
     public EcouteurBoutonPaper( ActiviteInitServeurWifiP2P activiteInitServeurWifiP2P,GameFragment gameFragment)
     {
       this.activiteInitServeurWifiP2P = activiteInitServeurWifiP2P;
@@ -26,12 +26,13 @@ public class EcouteurBoutonPaper implements View.OnClickListener {
     @Override
     public void onClick(View view) {
       //  imageViewRock = view.findViewById(R.id.imageViewRock);
+        this.activiteInitServeurWifiP2P.jeu = "f";
 
         this.gameFragment.imgPaper.setImageResource(R.drawable.paper);
         BitmapDrawable drawable = (BitmapDrawable)  this.gameFragment.imgPaper.getDrawable();
         Bitmap bitmap = drawable.getBitmap();
-        this.activiteInitServeurWifiP2P.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                new ResultFragment(this.activiteInitServeurWifiP2P,bitmap )).commit();
+        /*this.activiteInitServeurWifiP2P.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                new ResultFragment(this.activiteInitServeurWifiP2P)).commit();*/
 
     }
 }

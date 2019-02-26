@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Shifumi</string>
+    <string name="temps_d_attente">Temps d\'attente :</string>
+    <string name="resultat">Résultat</string>
+    <string name="rejouer">Rejouer</string>
+    <string name="quitter_jeu">Quitter jeu</string>
+    <string name="winner">winner</string>
+    <string name="joueur_1">Joueur 1</string>
+    <string name="joueur_2">Joueur 2</string>
 </resources>

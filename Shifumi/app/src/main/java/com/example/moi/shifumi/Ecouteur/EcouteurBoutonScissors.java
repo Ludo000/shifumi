@@ -11,8 +11,8 @@ import com.example.moi.shifumi.Network.Fragments.ResultFragment;
 import com.example.moi.shifumi.R;
 
 public class EcouteurBoutonScissors  implements View.OnClickListener {
-    GameFragment gameFragment;
-    ActiviteInitServeurWifiP2P activiteInitServeurWifiP2P;
+    private GameFragment gameFragment;
+    private ActiviteInitServeurWifiP2P activiteInitServeurWifiP2P;
     public EcouteurBoutonScissors(    ActiviteInitServeurWifiP2P activiteInitServeurWifiP2P,GameFragment gameFragment)
     {
        this.activiteInitServeurWifiP2P = activiteInitServeurWifiP2P;
@@ -21,11 +21,12 @@ public class EcouteurBoutonScissors  implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
+        this.activiteInitServeurWifiP2P.jeu = "c";
 
         this.gameFragment.imgScissors.setImageResource(R.drawable.scissors);
         BitmapDrawable drawable = (BitmapDrawable) this.gameFragment.imgScissors.getDrawable();
         Bitmap bitmap = drawable.getBitmap();
-        this.activiteInitServeurWifiP2P.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                new ResultFragment(this.activiteInitServeurWifiP2P,bitmap )).commit();
+        /*this.activiteInitServeurWifiP2P.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                new ResultFragment(this.activiteInitServeurWifiP2P)).commit();*/
     }
 }

@@ -7,4 +7,8 @@
     <string name="winner">winner</string>
     <string name="joueur_1">Joueur 1</string>
     <string name="joueur_2">Joueur 2</string>
+    <string name="TitleAdversaire">Choisissez votre adversaire :</string>
+    <string name="LabelJouer">Jouer</string>
+    <string name="LabelActualiser">Actualiser</string>
+    <string name="LabelCreerPartie">Suivant</string>
 </resources>

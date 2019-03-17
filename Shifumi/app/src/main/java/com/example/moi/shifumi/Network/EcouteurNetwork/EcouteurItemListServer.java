@@ -22,6 +22,7 @@ public class EcouteurItemListServer implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         this.activiteInitServeurWifiP2P.connect(this.index);
+       // this.activiteInitServeurWifiP2P.btnPlay.setEnabled(true);
 
     }
 }

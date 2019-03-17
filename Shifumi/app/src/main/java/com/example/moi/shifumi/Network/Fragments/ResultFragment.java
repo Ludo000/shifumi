@@ -46,8 +46,16 @@ public class ResultFragment extends Fragment {
         winner = viewResult.findViewById(R.id.txtWinner);
         joueur_host = viewResult.findViewById(R.id.playerServ);
         joueur_guest = viewResult.findViewById(R.id.playerClient);
-        jeu_guest = viewResult.findViewById(R.id.imageViewServ);
-        jeu_host = viewResult.findViewById(R.id.imageViewClient);
+
+        if(this.activiteInitServeurWifiP2P.etat.equals("client")){
+            jeu_guest = viewResult.findViewById(R.id.imageViewServ);
+            jeu_host = viewResult.findViewById(R.id.imageViewClient);
+        }
+        else {
+            jeu_host = viewResult.findViewById(R.id.imageViewServ);
+            jeu_guest = viewResult.findViewById(R.id.imageViewClient);
+        }
+
 
         joueur_host.setText(this.activiteInitServeurWifiP2P.playerName);
         joueur_guest.setText(this.activiteInitServeurWifiP2P.challengerNAme);
@@ -60,55 +68,38 @@ public class ResultFragment extends Fragment {
             host = this.activiteInitServeurWifiP2P.args.getString("host");
             guest = this.activiteInitServeurWifiP2P.args.getString("guest");
 
-            if (host.equals(guest)){
-                winner.setText("Match nul !");
-                if (host.equals("f")) {
-                    jeu_host.setImageResource(R.drawable.paper);
-                    jeu_guest.setImageResource(R.drawable.paper);
-                }
-                if (host.equals("c")) {
-                    jeu_host.setImageResource(R.drawable.scissors);
-                    jeu_guest.setImageResource(R.drawable.scissors);
-                }
-                if (host.equals("p")) {
-                    jeu_host.setImageResource(R.drawable.rock);
-                    jeu_guest.setImageResource(R.drawable.rock);
-                }
+            // image du host
+            if (host.equals("f")) {
+                jeu_host.setImageResource(R.drawable.paper);
+            }
+            else if (host.equals("c")) {
+                jeu_host.setImageResource(R.drawable.scissors);
+            }
+            else if (host.equals("p")) {
+                jeu_host.setImageResource(R.drawable.rock);
             }
 
-            assert guest != null;
-            assert host != null;
+            // image du client
+            if (guest.equals("f")) {
+                jeu_guest.setImageResource(R.drawable.paper);
+            }
+            else if (guest.equals("c")) {
+                jeu_guest.setImageResource(R.drawable.scissors);
+            }
+            else if (guest.equals("p")) {
+                jeu_guest.setImageResource(R.drawable.rock);
+            }
+
+
 
             if ((host.equals("p") && guest.equals("f")) || (host.equals("f") && guest.equals("c")) || (host.equals("c") && guest.equals("p"))) {
                 winner.setText(this.activiteInitServeurWifiP2P.challengerNAme);
-                if (host.equals("p")) {
-                    jeu_host.setImageResource(R.drawable.rock);
-                    jeu_guest.setImageResource(R.drawable.paper);
-                }
-                if (host.equals("f")) {
-                    jeu_host.setImageResource(R.drawable.paper);
-                    jeu_guest.setImageResource(R.drawable.scissors);
-                }
-                if (host.equals("c")) {
-                    jeu_host.setImageResource(R.drawable.scissors);
-                    jeu_guest.setImageResource(R.drawable.rock);
-                }
             }
-
-            if((host.equals("p") && guest.equals("c")) || (host.equals("f") && guest.equals("p")) || (host.equals("c") && guest.equals("f"))) {
+            else if((host.equals("p") && guest.equals("c")) || (host.equals("f") && guest.equals("p")) || (host.equals("c") && guest.equals("f"))) {
                 winner.setText(this.activiteInitServeurWifiP2P.playerName);
-                if(host.equals("p")) {
-                    jeu_host.setImageResource(R.drawable.rock);
-                    jeu_guest.setImageResource(R.drawable.scissors);
-                }
-                if(host.equals("f")) {
-                    jeu_host.setImageResource(R.drawable.paper);
-                    jeu_guest.setImageResource(R.drawable.rock);
-                }
-                if(host.equals("c")) {
-                    jeu_host.setImageResource(R.drawable.scissors);
-                    jeu_guest.setImageResource(R.drawable.paper);
-                }
+            }
+            else {
+                winner.setText("Match nul !");
             }
 
 

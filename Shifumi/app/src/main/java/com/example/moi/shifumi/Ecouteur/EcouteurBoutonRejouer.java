@@ -17,7 +17,7 @@ public class EcouteurBoutonRejouer implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-
+        this.activiteInitServeurWifiP2P.sendReceive.write("start");
         this.activiteInitServeurWifiP2P.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new GameFragment(this.activiteInitServeurWifiP2P)).commit();
 

@@ -26,9 +26,8 @@ public class EcouteurBoutonScissors  implements View.OnClickListener {
         this.activiteInitServeurWifiP2P.sendReceive.write("c");
 
         this.gameFragment.imgScissors.setImageResource(R.drawable.scissors);
-        BitmapDrawable drawable = (BitmapDrawable) this.gameFragment.imgScissors.getDrawable();
-        Bitmap bitmap = drawable.getBitmap();
-        /*this.activiteInitServeurWifiP2P.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                new ResultFragment(this.activiteInitServeurWifiP2P)).commit();*/
+        this.gameFragment.imgRock.setAlpha(0.2f);
+        this.gameFragment.imgScissors.setAlpha(1f);
+        this.gameFragment.imgPaper.setAlpha(0.2f);
     }
 }

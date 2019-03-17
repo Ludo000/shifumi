@@ -6,6 +6,7 @@ import android.content.IntentFilter;
 import android.net.wifi.WpsInfo;
 import android.net.wifi.p2p.WifiP2pConfig;
 import android.net.wifi.p2p.WifiP2pDevice;
+import android.net.wifi.p2p.WifiP2pGroup;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Handler;
 import android.os.Message;
@@ -37,7 +38,6 @@ import java.util.List;
 public class ActiviteInitServeurWifiP2P extends AppCompatActivity {
 
 
-    public Button btnPlay;
     public String etat;
     public InetAddress groupOwnerAddress;
     public WriteThread writeThreadChoice;
@@ -83,12 +83,11 @@ public class ActiviteInitServeurWifiP2P extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_activite_init_serveur_wifi_p2_p);
-        btnPlay = findViewById(R.id.btnPlay);
+
+        this.disconnectPeers();
         this.etat = "";
         this.ecouteurBoutonPlay = new EcouteurBoutonPlay(this);
-        //  btnPlay.setOnClickListener(this.ecouteurBoutonPlay);
         this.mListView = findViewById(R.id.listview_server);
         this.enAttente = findViewById(R.id.enAttentPlayer);
         this.selectedDevice = findViewById(R.id.selectedDevice);
@@ -171,5 +170,30 @@ public class ActiviteInitServeurWifiP2P extends AppCompatActivity {
         this.mManager.connect(this.mChannel,
                 config, new ConnectActionListener(this, id));
 
+    }
+
+    public void disconnectPeers(){
+        if (mManager != null && mChannel != null) {
+            mManager.requestGroupInfo(mChannel, new WifiP2pManager.GroupInfoListener() {
+                @Override
+                public void onGroupInfoAvailable(WifiP2pGroup group) {
+                    if (group != null && mManager != null && mChannel != null
+                            && group.isGroupOwner()) {
+                        mManager.removeGroup(mChannel, new WifiP2pManager.ActionListener() {
+
+                            @Override
+                            public void onSuccess() {
+                                Log.d("ludo", "removeGroup onSuccess -");
+                            }
+
+                            @Override
+                            public void onFailure(int reason) {
+                                Log.d("ludo", "removeGroup onFailure -" + reason);
+                            }
+                        });
+                    }
+                }
+            });
+        }
     }
 }

@@ -24,7 +24,7 @@
         android:layout_width="300dp"
         android:layout_height="74dp"
         android:layout_marginTop="36dp"
-        android:text="Crée partie"
+        android:text="@string/LabelCreerPartie"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

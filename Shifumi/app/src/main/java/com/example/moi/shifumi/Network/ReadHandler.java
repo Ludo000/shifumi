@@ -5,6 +5,7 @@ import android.os.Message;
 import android.util.Log;
 
 import com.example.moi.shifumi.Network.Fragments.GameFragment;
+import com.example.moi.shifumi.Network.Fragments.StartFragment;
 import com.example.moi.shifumi.R;
 
 
@@ -29,6 +30,11 @@ public class ReadHandler implements Handler.Callback {
                 }
                 else if(tempMsg.equals("f") || tempMsg.equals("c") || tempMsg.equals("p") ){
                     this.activiteInitServeurWifiP2P.args.putString("guest", tempMsg);
+                }
+                else if(tempMsg.equals("exit")){
+                    this.activiteInitServeurWifiP2P.disconnectPeers();
+                    this.activiteInitServeurWifiP2P.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                            new StartFragment(this.activiteInitServeurWifiP2P)).commit();
                 }
 
                 break;

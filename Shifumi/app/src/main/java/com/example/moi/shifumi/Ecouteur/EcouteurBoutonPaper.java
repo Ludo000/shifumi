@@ -31,10 +31,9 @@ public class EcouteurBoutonPaper implements View.OnClickListener {
         this.activiteInitServeurWifiP2P.sendReceive.write("f");
 
         this.gameFragment.imgPaper.setImageResource(R.drawable.paper);
-        BitmapDrawable drawable = (BitmapDrawable)  this.gameFragment.imgPaper.getDrawable();
-        Bitmap bitmap = drawable.getBitmap();
-        /*this.activiteInitServeurWifiP2P.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                new ResultFragment(this.activiteInitServeurWifiP2P)).commit();*/
+        this.gameFragment.imgRock.setAlpha(0.2f);
+        this.gameFragment.imgScissors.setAlpha(0.2f);
+        this.gameFragment.imgPaper.setAlpha(1f);
 
     }
 }

@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.moi.shifumi.Ecouteur.EcouteurBoutonActualiser;
 import com.example.moi.shifumi.Ecouteur.EcouteurBoutonPlay;
 import com.example.moi.shifumi.Network.ActiviteInitServeurWifiP2P;
 import com.example.moi.shifumi.R;
@@ -23,10 +24,12 @@ import com.example.moi.shifumi.R;
 public class StartFragment extends Fragment {
 
     public Button btnPlay;
+    public Button btnActualiser;
     public  TextView servPlayerName;
     public String playerName;
     public EcouteurBoutonPlay ecouteurBoutonPlay;
-    ActiviteInitServeurWifiP2P activiteInitServeurWifiP2P;
+    public EcouteurBoutonActualiser ecouteurBoutonActualiser;
+    public ActiviteInitServeurWifiP2P activiteInitServeurWifiP2P;
 
     @SuppressLint("ValidFragment")
     public StartFragment(ActiviteInitServeurWifiP2P activiteInitServeurWifiP2P) {
@@ -43,7 +46,9 @@ public class StartFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_start, container, false);
         btnPlay = v.findViewById(R.id.btnPlay);
+        btnActualiser = v.findViewById(R.id.btnRefresh);
         this.ecouteurBoutonPlay = new EcouteurBoutonPlay(this.activiteInitServeurWifiP2P);
+        this.ecouteurBoutonActualiser = new EcouteurBoutonActualiser(this.activiteInitServeurWifiP2P);
         this.activiteInitServeurWifiP2P.mListView = v.findViewById(R.id.listview_server);
         this.activiteInitServeurWifiP2P.enAttente = v.findViewById(R.id.enAttentPlayer);
         this.activiteInitServeurWifiP2P.selectedDevice = v.findViewById(R.id.selectedDevice);
@@ -51,6 +56,8 @@ public class StartFragment extends Fragment {
         servPlayerName = v.findViewById(R.id.servPlayerName);
         servPlayerName.setText(this.activiteInitServeurWifiP2P.playerName);
         btnPlay.setOnClickListener(this.ecouteurBoutonPlay);
+        //btnPlay.setEnabled(false);
+        btnActualiser.setOnClickListener(this.ecouteurBoutonActualiser);
 
 
         return v;

@@ -62,6 +62,7 @@ public class ResultFragment extends Fragment {
 
         btnRejouer.setOnClickListener(this.ecouteurBoutonRejouer);
         btnQutterJeu.setOnClickListener(this.ecouteurBoutonQuitterJeu);
+        btnQutterJeu.setVisibility(View.GONE);
 
 
         if(this.activiteInitServeurWifiP2P.args != null){

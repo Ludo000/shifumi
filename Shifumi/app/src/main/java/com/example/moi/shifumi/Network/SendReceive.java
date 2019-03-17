@@ -9,6 +9,8 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.util.Log;
 
+import com.example.moi.shifumi.Network.Fragments.StartFragment;
+
 import static com.example.moi.shifumi.Network.ReadHandler.MESSAGE_READ;
 
 
@@ -45,6 +47,11 @@ public class SendReceive extends Thread {
         Log.d("ludo", "sendReceive run");
 
         //activer bouton Play ici
+
+        if(this.activiteInitServeurWifiP2P.etat.equals("serveur"))
+            this.activiteInitServeurWifiP2P.serverStarted=true;
+        else
+            this.activiteInitServeurWifiP2P.clientStarted=true;
         byte[] buffer = new byte[1024];
         int bytes;
         while (socket != null) {

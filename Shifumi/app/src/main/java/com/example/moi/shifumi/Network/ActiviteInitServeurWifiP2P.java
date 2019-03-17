@@ -75,8 +75,8 @@ public class ActiviteInitServeurWifiP2P extends AppCompatActivity {
     public Socket socketS;
     public Socket socketC;
     public Bundle args;
-    public Boolean activerBoutonPlay;
-
+    public Boolean clientStarted = false;
+    public Boolean serverStarted = false;
 
 
 
@@ -87,7 +87,6 @@ public class ActiviteInitServeurWifiP2P extends AppCompatActivity {
         setContentView(R.layout.activity_activite_init_serveur_wifi_p2_p);
 
         this.disconnectPeers();
-        this.activerBoutonPlay = true;
         this.etat = "";
         this.ecouteurBoutonPlay = new EcouteurBoutonPlay(this);
         this.mListView = findViewById(R.id.listview_server);

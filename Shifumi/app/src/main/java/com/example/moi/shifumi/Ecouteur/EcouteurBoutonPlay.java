@@ -18,9 +18,12 @@ public class EcouteurBoutonPlay implements View.OnClickListener {
     @Override
     public void onClick(View view) {
 
-        this.activiteInitServeurWifiP2P.sendReceive.write("start");
-        this.activiteInitServeurWifiP2P.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                new GameFragment(this.activiteInitServeurWifiP2P)).commit();
+        if((this.activiteInitServeurWifiP2P.etat.equals("serveur") && this.activiteInitServeurWifiP2P.serverStarted)
+            || this.activiteInitServeurWifiP2P.etat.equals("client") && this.activiteInitServeurWifiP2P.clientStarted) {
+            this.activiteInitServeurWifiP2P.sendReceive.write("start");
+            this.activiteInitServeurWifiP2P.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new GameFragment(this.activiteInitServeurWifiP2P)).commit();
+        }
 
 
     }

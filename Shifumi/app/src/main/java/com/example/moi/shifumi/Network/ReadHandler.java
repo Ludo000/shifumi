@@ -24,14 +24,18 @@ public class ReadHandler implements Handler.Callback {
                 byte[] readBuff = (byte[]) msg.obj;
                 String tempMsg = new String(readBuff, 0, msg.arg1);
                 Log.d("ludo", "handler reçoit : " + tempMsg);
-                if(tempMsg.equals("start")){
+
+                String[] output = tempMsg.split("\\.");
+
+                if(output[0].equals("start")){
                     this.activiteInitServeurWifiP2P.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                             new GameFragment(this.activiteInitServeurWifiP2P)).commit();
                 }
-                else if(tempMsg.equals("f") || tempMsg.equals("c") || tempMsg.equals("p") ){
-                    this.activiteInitServeurWifiP2P.args.putString("guest", tempMsg);
+                else if(output[0].equals("f") || output[0].equals("c") || output[0].equals("p") ){
+                    this.activiteInitServeurWifiP2P.args.putString("guest", output[0]);
+                    this.activiteInitServeurWifiP2P.challengerNAme = output[1];
                 }
-                else if(tempMsg.equals("exit")){
+                else if(output[0].equals("exit")){
                     this.activiteInitServeurWifiP2P.disconnectPeers();
                     this.activiteInitServeurWifiP2P.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                             new StartFragment(this.activiteInitServeurWifiP2P)).commit();

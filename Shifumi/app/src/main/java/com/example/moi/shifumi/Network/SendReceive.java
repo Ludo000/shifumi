@@ -43,6 +43,8 @@ public class SendReceive extends Thread {
     @Override
     public void run(){
         Log.d("ludo", "sendReceive run");
+
+        //activer bouton Play ici
         byte[] buffer = new byte[1024];
         int bytes;
         while (socket != null) {

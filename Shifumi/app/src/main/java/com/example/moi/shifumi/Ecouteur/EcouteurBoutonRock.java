@@ -23,7 +23,7 @@ public class EcouteurBoutonRock implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         this.activiteInitServeurWifiP2P.jeu = "p";
-        this.activiteInitServeurWifiP2P.sendReceive.write("p");
+        this.activiteInitServeurWifiP2P.sendReceive.write("p." + this.activiteInitServeurWifiP2P.playerName);
 
         this.gameFragment.imgRock.setImageResource(R.drawable.rock);
         this.gameFragment.imgRock.setAlpha(1f);

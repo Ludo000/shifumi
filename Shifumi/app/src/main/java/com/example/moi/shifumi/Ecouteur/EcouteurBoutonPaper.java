@@ -28,7 +28,8 @@ public class EcouteurBoutonPaper implements View.OnClickListener {
     public void onClick(View view) {
       //  imageViewRock = view.findViewById(R.id.imageViewRock);
         this.activiteInitServeurWifiP2P.jeu = "f";
-        this.activiteInitServeurWifiP2P.sendReceive.write("f");
+        this.activiteInitServeurWifiP2P.sendReceive.write("f." + this.activiteInitServeurWifiP2P.playerName);
+
 
         this.gameFragment.imgPaper.setImageResource(R.drawable.paper);
         this.gameFragment.imgRock.setAlpha(0.2f);

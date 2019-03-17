@@ -23,7 +23,7 @@ public class EcouteurBoutonScissors  implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         this.activiteInitServeurWifiP2P.jeu = "c";
-        this.activiteInitServeurWifiP2P.sendReceive.write("c");
+        this.activiteInitServeurWifiP2P.sendReceive.write("c." + this.activiteInitServeurWifiP2P.playerName);
 
         this.gameFragment.imgScissors.setImageResource(R.drawable.scissors);
         this.gameFragment.imgRock.setAlpha(0.2f);

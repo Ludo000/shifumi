@@ -7,6 +7,8 @@ import android.net.wifi.WpsInfo;
 import android.net.wifi.p2p.WifiP2pConfig;
 import android.net.wifi.p2p.WifiP2pDevice;
 import android.net.wifi.p2p.WifiP2pManager;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +28,8 @@ import com.example.moi.shifumi.Network.Fragments.StartFragment;
 import com.example.moi.shifumi.R;
 
 import java.net.InetAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -34,12 +38,14 @@ public class ActiviteInitServeurWifiP2P extends AppCompatActivity {
 
 
     public Button btnPlay;
+    public String etat;
+    public InetAddress groupOwnerAddress;
+    public WriteThread writeThreadChoice;
     EcouteurBoutonPlay ecouteurBoutonPlay;
     public InetAddress adresseServeur;
 
     public WifiP2pManager mManager;
     public WifiP2pManager.Channel mChannel;
-    public BroadcastReceiver receveur;
     public ListView mListView;
     public ArrayAdapter<String> adapter;
     public Button btnRejoindrePlayer;
@@ -59,6 +65,20 @@ public class ActiviteInitServeurWifiP2P extends AppCompatActivity {
 
     public ImageView imageViewRock;
 
+
+    public ServerThread serverThread;
+    public ClientThread clientClass;
+    public SendReceive sendReceive;
+    public Handler handler;
+    public WriteThread writeThread;
+    public ServerSocket serverSocket;
+    public Socket socketS;
+    public Socket socketC;
+    public Bundle args;
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -66,6 +86,7 @@ public class ActiviteInitServeurWifiP2P extends AppCompatActivity {
 
         setContentView(R.layout.activity_activite_init_serveur_wifi_p2_p);
         btnPlay = findViewById(R.id.btnPlay);
+        this.etat = "";
         this.ecouteurBoutonPlay = new EcouteurBoutonPlay(this);
         //  btnPlay.setOnClickListener(this.ecouteurBoutonPlay);
         this.mListView = findViewById(R.id.listview_server);
@@ -75,6 +96,7 @@ public class ActiviteInitServeurWifiP2P extends AppCompatActivity {
         challengerNAme = "Joueur 2";
         servPlayerName = findViewById(R.id.servPlayerName);
         //    servPlayerName.setText(playerName);
+        this.args = new Bundle();
 
         // Indicates a change in the Wi-Fi P2P status.
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
@@ -85,6 +107,8 @@ public class ActiviteInitServeurWifiP2P extends AppCompatActivity {
         // Indicates this device's details have changed.String[] listplayer = {playerName};
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
 
+        this.socketC = new Socket();
+
         String[] listplayer = {playerName};
         receiver = new EcouteurBroadcastReceiver(this);
         this.peerListListener = new PeerListListener(this, this.receiver);
@@ -92,8 +116,10 @@ public class ActiviteInitServeurWifiP2P extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new StartFragment(this)).commit();
-
+        this.handler = new Handler(new ReadHandler(this));
     }
+
+
 
     @Override
     protected void onResume()
@@ -109,7 +135,7 @@ public class ActiviteInitServeurWifiP2P extends AppCompatActivity {
                 // No services have actually been discovered yet, so this method
                 // can often be left blank. Code for peer discovery goes in the
                 // onReceive method, detailed below.
-                Log.d("sami :","discoverPeers success");
+                Log.d("ludo :","discoverPeers success");
 
             }
 
@@ -117,7 +143,7 @@ public class ActiviteInitServeurWifiP2P extends AppCompatActivity {
             public void onFailure(int reasonCode) {
                 // Code for when the discovery initiation fails goes here.
                 // Alert the user that something went wrong.
-                Log.d("sami :","discoverPeers failed, code : " + Integer.toString(reasonCode));
+                Log.d("ludo :","discoverPeers failed, code : " + Integer.toString(reasonCode));
             }
         });
 
@@ -131,7 +157,7 @@ public class ActiviteInitServeurWifiP2P extends AppCompatActivity {
     protected void onPause()
     {
         super.onPause();
-        //this.unregisterReceiver(this.receveur);      // le receveur est désactivé
+        this.unregisterReceiver(this.receiver);      // le receveur est désactivé
     }
 
     public void connect(int id) {

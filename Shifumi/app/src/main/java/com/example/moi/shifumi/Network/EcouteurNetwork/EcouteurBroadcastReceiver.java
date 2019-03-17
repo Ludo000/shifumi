@@ -57,7 +57,7 @@ public class EcouteurBroadcastReceiver extends BroadcastReceiver {
 
         }
         else if (WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION.equals(action)) {
-            Log.d("sami :", "P2P peers changed");
+            Log.d("ludo :", "P2P peers changed");
 
             // Request available peers from the wifi p2p manager. This is an
             // asynchronous call and the calling activity is notified with a
@@ -71,7 +71,7 @@ public class EcouteurBroadcastReceiver extends BroadcastReceiver {
     public void reqPeer(){
         if (this.activity.mManager != null) {
             this.activity.mManager.requestPeers(this.activity.mChannel, this.activity.peerListListener);
-            Log.d("sami :", "requestPeers");
+            Log.d("ludo :", "requestPeers");
 
         }
     }

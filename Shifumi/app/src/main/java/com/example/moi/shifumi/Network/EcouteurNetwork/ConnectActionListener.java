@@ -35,8 +35,10 @@ public class ConnectActionListener implements WifiP2pManager.ActionListener {
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onSuccess() {
-        this.startRegistration();
-        this.discoverService();
+        //this.startRegistration();
+        activiteInitServeurWifiP2P.mListView.setVisibility(View.INVISIBLE);
+        activiteInitServeurWifiP2P.selectedDevice.setText(((WifiP2pDevice) activiteInitServeurWifiP2P.deviceList.toArray()[index]).deviceName);
+        activiteInitServeurWifiP2P.selectedDevice.setVisibility(View.VISIBLE);
 
     }
 
@@ -67,6 +69,8 @@ public class ConnectActionListener implements WifiP2pManager.ActionListener {
                activiteInitServeurWifiP2P.mListView.setVisibility(View.INVISIBLE);
                activiteInitServeurWifiP2P.selectedDevice.setText(((WifiP2pDevice) activiteInitServeurWifiP2P.deviceList.toArray()[index]).deviceName);
                activiteInitServeurWifiP2P.selectedDevice.setVisibility(View.VISIBLE);
+               //discoverService();
+
            }
 
            @Override
@@ -127,6 +131,8 @@ public class ConnectActionListener implements WifiP2pManager.ActionListener {
         @Override
         public void onSuccess() {
             // Success!
+            Log.d("ludo :", "Discover service.");
+
         }
 
         @Override

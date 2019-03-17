@@ -2,13 +2,14 @@ package com.example.moi.shifumi.Ecouteur;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 
 
 import com.example.moi.shifumi.Network.ActiviteInitServeurWifiP2P;
 import com.example.moi.shifumi.Network.Fragments.GameFragment;
-import com.example.moi.shifumi.Network.Fragments.ResultFragment;
+import com.example.moi.shifumi.Network.SendReceive;
+import com.example.moi.shifumi.Network.WriteThread;
 import com.example.moi.shifumi.R;
 
 public class EcouteurBoutonPaper implements View.OnClickListener {
@@ -27,6 +28,7 @@ public class EcouteurBoutonPaper implements View.OnClickListener {
     public void onClick(View view) {
       //  imageViewRock = view.findViewById(R.id.imageViewRock);
         this.activiteInitServeurWifiP2P.jeu = "f";
+        this.activiteInitServeurWifiP2P.sendReceive.write("f");
 
         this.gameFragment.imgPaper.setImageResource(R.drawable.paper);
         BitmapDrawable drawable = (BitmapDrawable)  this.gameFragment.imgPaper.getDrawable();

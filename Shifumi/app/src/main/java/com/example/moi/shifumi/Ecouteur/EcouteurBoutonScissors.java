@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import com.example.moi.shifumi.Network.ActiviteInitServeurWifiP2P;
 import com.example.moi.shifumi.Network.Fragments.GameFragment;
 import com.example.moi.shifumi.Network.Fragments.ResultFragment;
+import com.example.moi.shifumi.Network.WriteThread;
 import com.example.moi.shifumi.R;
 
 public class EcouteurBoutonScissors  implements View.OnClickListener {
@@ -22,6 +23,7 @@ public class EcouteurBoutonScissors  implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         this.activiteInitServeurWifiP2P.jeu = "c";
+        this.activiteInitServeurWifiP2P.sendReceive.write("c");
 
         this.gameFragment.imgScissors.setImageResource(R.drawable.scissors);
         BitmapDrawable drawable = (BitmapDrawable) this.gameFragment.imgScissors.getDrawable();

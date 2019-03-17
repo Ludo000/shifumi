@@ -37,7 +37,7 @@ public class PeerListListener implements WifiP2pManager.PeerListListener{
 
     @Override
     public void onPeersAvailable(WifiP2pDeviceList peerList) {
-        Log.d("sami :", "onPeersAvailable");
+        Log.d("ludo :", "onPeersAvailable");
 
         Collection<WifiP2pDevice> refreshedPeers = peerList.getDeviceList();
         if (!refreshedPeers.equals(this.activiteInitServeurWifiP2P.peers)) {
@@ -58,7 +58,7 @@ public class PeerListListener implements WifiP2pManager.PeerListListener{
         }
 
         if (this.activiteInitServeurWifiP2P.peers.size() == 0) {
-            Log.d("WiFiDirectActivity", "No devices found");
+            Log.d("ludo", "No devices found");
             this.broadcastReceiver.reqPeer();
             return;
         }

@@ -79,10 +79,8 @@ public class GameFragment extends Fragment implements Chronometer.OnChronometerT
 
         if ("0".contentEquals(chronometer.getText())) {
             ResultFragment resultFragment = new ResultFragment(this.activiteInitServeurWifiP2P);
-            Bundle args = new Bundle();
-            args.putString("guest", "p");
-            args.putString("host", this.activiteInitServeurWifiP2P.jeu);
-            resultFragment.setArguments(args);
+            this.activiteInitServeurWifiP2P.args.putString("host", this.activiteInitServeurWifiP2P.jeu);
+            resultFragment.setArguments(this.activiteInitServeurWifiP2P.args);
             if (getFragmentManager() != null) {
                 getFragmentManager().
                         beginTransaction().replace(R.id.fragment_container, resultFragment).commit();

@@ -55,11 +55,10 @@ public class ResultFragment extends Fragment {
         btnRejouer.setOnClickListener(this.ecouteurBoutonRejouer);
         btnQutterJeu.setOnClickListener(this.ecouteurBoutonQuitterJeu);
 
-        Bundle bundle = this.getArguments();
 
-        if(bundle != null){
-            host = bundle.getString("host");
-            guest = bundle.getString("guest");
+        if(this.activiteInitServeurWifiP2P.args != null){
+            host = this.activiteInitServeurWifiP2P.args.getString("host");
+            guest = this.activiteInitServeurWifiP2P.args.getString("guest");
 
             if (host.equals(guest)){
                 winner.setText("Match nul !");
@@ -78,6 +77,8 @@ public class ResultFragment extends Fragment {
             }
 
             assert guest != null;
+            assert host != null;
+
             if ((host.equals("p") && guest.equals("f")) || (host.equals("f") && guest.equals("c")) || (host.equals("c") && guest.equals("p"))) {
                 winner.setText(this.activiteInitServeurWifiP2P.challengerNAme);
                 if (host.equals("p")) {

@@ -26,5 +26,6 @@ public class EcouteurBoutonCreePartie implements View.OnClickListener{
         Intent intent = new Intent(this.mainActivity, ActiviteInitServeurWifiP2P.class);
         intent.putExtra("NamePlayer",this.playerName.getText().toString());
         this.mainActivity.startActivity(intent);
+
     }
 }

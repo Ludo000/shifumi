@@ -1,6 +1,7 @@
 package com.example.moi.shifumi.Ecouteur;
 
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.moi.shifumi.Network.ActiviteInitServeurWifiP2P;
 import com.example.moi.shifumi.Network.Fragments.GameFragment;
@@ -24,6 +25,9 @@ public class EcouteurBoutonPlay implements View.OnClickListener {
             this.activiteInitServeurWifiP2P.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new GameFragment(this.activiteInitServeurWifiP2P)).commit();
         }
+        else
+            Toast.makeText(this.activiteInitServeurWifiP2P.getApplicationContext(), "Le serveur n'est pas encore prêt !",
+                    Toast.LENGTH_SHORT).show();
 
 
     }

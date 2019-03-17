@@ -19,6 +19,8 @@ public class EcouteurBoutonQuitterJeu implements View.OnClickListener{
     @Override
     public void onClick(View view) {
         this.activiteInitServeurWifiP2P.sendReceive.write("exit");
+        this.activiteInitServeurWifiP2P.serverStarted = false;
+        this.activiteInitServeurWifiP2P.clientStarted = false;
         this.activiteInitServeurWifiP2P.disconnectPeers();
         this.activiteInitServeurWifiP2P.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new StartFragment(this.activiteInitServeurWifiP2P)).commit();

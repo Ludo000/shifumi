@@ -26,12 +26,9 @@ public class PeerListListener implements WifiP2pManager.PeerListListener{
     private static String[] filtreNoms(Collection<WifiP2pDevice> listeAppareilsAProximite)
     {
         String [] t = new String[listeAppareilsAProximite.size()];
-
         int i = -1;
-
         for (WifiP2pDevice d : listeAppareilsAProximite)
             t[++i] = d.deviceName;
-
         return t;
     }
 

@@ -56,7 +56,6 @@ public class StartFragment extends Fragment {
         servPlayerName = v.findViewById(R.id.servPlayerName);
         servPlayerName.setText(this.activiteInitServeurWifiP2P.playerName);
         btnPlay.setOnClickListener(this.ecouteurBoutonPlay);
-        btnPlay.setEnabled(true);
         btnActualiser.setOnClickListener(this.ecouteurBoutonActualiser);
 
 

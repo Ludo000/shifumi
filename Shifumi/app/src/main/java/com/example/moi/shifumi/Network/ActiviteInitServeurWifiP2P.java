@@ -64,6 +64,7 @@ public class ActiviteInitServeurWifiP2P extends AppCompatActivity {
     public TextView servPlayerName;
 
     public ImageView imageViewRock;
+    public Button btnPlay;
 
 
     public ServerThread serverThread;
@@ -92,11 +93,12 @@ public class ActiviteInitServeurWifiP2P extends AppCompatActivity {
         this.mListView = findViewById(R.id.listview_server);
         this.enAttente = findViewById(R.id.enAttentPlayer);
         this.selectedDevice = findViewById(R.id.selectedDevice);
-        playerName = getIntent().getStringExtra("NamePlayer");
-        challengerNAme = "Joueur 2";
-        servPlayerName = findViewById(R.id.servPlayerName);
-        //    servPlayerName.setText(playerName);
+        this.playerName = getIntent().getStringExtra("NamePlayer");
+        this.challengerNAme = "Joueur 2";
+        this.servPlayerName = findViewById(R.id.servPlayerName);
         this.args = new Bundle();
+        this.btnPlay = this.findViewById(R.id.btnPlay);
+
 
         // Indicates a change in the Wi-Fi P2P status.
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
@@ -109,7 +111,6 @@ public class ActiviteInitServeurWifiP2P extends AppCompatActivity {
 
         this.socketC = new Socket();
 
-        String[] listplayer = {playerName};
         receiver = new EcouteurBroadcastReceiver(this);
         this.peerListListener = new PeerListListener(this, this.receiver);
         this.ecouteurConnectionInfo = new EcouteurConnectionInfo(this);

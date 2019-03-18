@@ -50,10 +50,14 @@ public class ResultFragment extends Fragment {
         if(this.activiteInitServeurWifiP2P.etat.equals("client")){
             jeu_guest = viewResult.findViewById(R.id.imageViewServ);
             jeu_host = viewResult.findViewById(R.id.imageViewClient);
+            joueur_guest = viewResult.findViewById(R.id.playerServ);
+            joueur_host = viewResult.findViewById(R.id.playerClient);
         }
         else {
             jeu_host = viewResult.findViewById(R.id.imageViewServ);
             jeu_guest = viewResult.findViewById(R.id.imageViewClient);
+            joueur_host = viewResult.findViewById(R.id.playerServ);
+            joueur_guest = viewResult.findViewById(R.id.playerClient);
         }
 
 
